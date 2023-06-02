@@ -31,10 +31,22 @@ if (app.Environment.IsDevelopment())
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
+
+
 // Endpoints da API
-app.MapGet("/api/tarefas", ([FromServices] tarefasContext _db) =>
+
+app.MapGet("/v1/api/tarefas", ([FromServices] tarefasContext _db) =>
 {
-    return Results.Ok(_db.Tarefa.ToList<Tarefa>());
+    var tarefas = _db.Tarefa.ToList<Tarefa>();
+    return Results.Ok(tarefas);
 });
+
+//Busca por ID
+
+
+//app.MapGet("/api/tarefas", ([FromServices] tarefasContext _db) =>
+//{
+//    return Results.Ok(_db.Tarefa.ToList<Tarefa>());
+// });
 
 app.Run();
